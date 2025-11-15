@@ -1,0 +1,21 @@
+__pycache__/
+venv/
+*.pyc
+*.pyo
+*.pyd
+
+# Логи
+*.log
+
+# env-файлы с токенами
+.env
+*.env
+auth.txt
+
+# Кэш и временные файлы
+.cache/
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
