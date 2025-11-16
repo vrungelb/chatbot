@@ -4,11 +4,10 @@ from telegram.ext import (
     ApplicationBuilder,
     CommandHandler,
     MessageHandler,
-    CallbackQueryHandler,
     filters,
 )
 
-from handlers import start, button_handler, handle_text
+from handlers import start, server_status, handle_text
 
 
 logging.basicConfig(
@@ -21,20 +20,12 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 
 
 def main():
-    # инициализация приложения бота
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
 
-    # регистрируем обработчик команды /start
     app.add_handler(CommandHandler("start", start))
-
-    # регистрируем обработчик нажатий на inline-кнопки
-    app.add_handler(CallbackQueryHandler(button_handler))
-
-    # регистрируем обработчик обычного текста
-    # сюда попадает всё, что не команда
+    app.add_handler(CommandHandler("status", server_status))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
 
-    # запускаем бота в режиме long polling
     logger.info("бот запущен и ждёт обновления")
     app.run_polling(drop_pending_updates=True)
 

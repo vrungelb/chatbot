@@ -5,7 +5,7 @@ from gigachat_client import get_gigachat_response
 
 # возврат статусных точек
 def _status_icon(ok: bool) -> str:
-    return "🟢" if ok else "🔴"
+    return "🟢 [OK]" if ok else "🔴 [ERROR]"
 
 
 def build_server_status_text() -> str:
@@ -55,18 +55,18 @@ def build_server_status_text() -> str:
 
     # Собираем единый текст для отправки
     text = (
-        "📊 **Статус сервера**\n"
+        "📊  Статус сервера\n"
         "-------------------------\n"
         f"{_status_icon(telegram_ok)} Telegram API\n"
         f"{_status_icon(giga_ok)} GigaChat API\n"
         f"{_status_icon(internet_ok)} Интернет\n"
         "\n"
-        "🖥 **Система**\n"
+        "🖥   Система\n"
         f"{_status_icon(uptime_ok)} Uptime: {uptime}\n"
         f"{_status_icon(cpu_ok)} CPU: {cpu_line}\n"
         f"{_status_icon(ram_ok)} RAM: {ram}\n"
         "-------------------------\n"
-        "Готов к работе."
+        "Я готов к работе!"
     )
 
     return text
