@@ -36,7 +36,7 @@ def main():
 
     # запускаем бота в режиме long polling
     logger.info("бот запущен и ждёт обновления")
-    app.run_polling()
+    app.run_polling(drop_pending_updates=True)
 
 
 if __name__ == "__main__":
